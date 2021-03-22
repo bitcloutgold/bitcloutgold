@@ -19,13 +19,14 @@ const smoothstep = (x) => {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
-/// Congrats on reading the source code. The first two coin owner of 
+/// Congrats on reading the source code. The first two coin owners of 
 /// bitcloutgold to post a 🤖 on their account, will get a machine learning
 /// 🤖 trained on their account at no extra cost!!! You must own at least one whole coin
 // and make a post including a 🤖.
 //
 /// Bitcloutgold is super alpha. I'm building give me space mother fuckers.
 ////////////////////////////////////////////////////////////////////////////////////////
+console.log("👷🚧👷 Under Construction 👷🚧👷")
 
 const [bitclout_img, img_rdy] = loadImage("bitclout.jpg");
 const [bitcloutgold_img, img2_rdy] = loadImage("bitcloutgodl.jpg");
@@ -85,26 +86,30 @@ const draw = (ctx, t) => {
         const px = mw;
         const py = mh;
         const r = sin(t / (PI * 80.0));
+        const roffset = sin((t + 34.4) / (PI * 80.0));
         const sign_offset = 76;
         const sign_size = { width: 50, height: 50 };
         const worker_size = { width: 50, height: 50 };
 
+        ctx.clearRect(0, 0, w, h);
+
         ctx.translate(px, py);
+
+        ctx.translate(-sign_offset, 0);
         ctx.rotate(r);
+        ctx.drawImage(sign, -sign_size.width / 2, -sign_size.height / 2, sign_size.width, sign_size.height);
+        ctx.rotate(-r);
+        ctx.translate(sign_offset, 0);
 
-        ctx.translate(-sign_size.width / 2 + sign_offset, -sign_size.height / 2);
-        ctx.drawImage(sign, sign_size.width, sign_size.height);
-        ctx.translate(sign_size.width / 2 - sign_offset, sign_size.height / 2);
+        ctx.translate(sign_offset, 0);
+        ctx.rotate(roffset);
+        ctx.drawImage(sign, -sign_size.width / 2, -sign_size.height / 2, sign_size.width, sign_size.height);
+        ctx.rotate(-roffset);
+        ctx.translate(-sign_offset, 0);
 
-        ctx.translate(-sign_size.width / 2 - sign_offset, -sign_size.height / 2);
-        ctx.drawImage(sign, sign_size.width, sign_size.height);
-        ctx.translate(sign_size.width / 2 + sign_offset, -sign_size.height / 2);
-
-        ctx.rotate(-1.2 * r);
+        ctx.rotate(-0.2 * r);
         ctx.drawImage(worker, -worker_size.width / 2, -worker_size.height / 2, worker_size.width, worker_size.height);
-        ctx.rotate(1.57 * r);
-        ctx.drawImage(sign, -sign_size.width / 2 + sign_offset, -sign_size.height / 2, sign_size.width, sign_size.height);
-        console.log("draw", t, r);
+        ctx.rotate(0.2 * r);
         // ctx.rotate(-r);
         ctx.translate(-px, -py);
     }
